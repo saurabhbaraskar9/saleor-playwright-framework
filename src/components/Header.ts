@@ -23,20 +23,19 @@ export class Header {
     await this.cartLink.click();
   }
 
-async openCategory(category: string, subCategory: string): Promise<void> {
-  const trigger = this.page
-    .getByRole('banner')
-    .getByRole('button', { name: category, exact: true });
-  const panel = this.page.locator('div[data-slot="mega-menu-panel"]');
+  async openCategory(category: string, subCategory: string): Promise<void> {
+    const trigger = this.page
+      .getByRole('banner')
+      .getByRole('button', { name: category, exact: true });
+    const panel = this.page.locator('div[data-slot="mega-menu-panel"]');
 
-  await expect(async () => {
-    await trigger.hover();
-    await expect(trigger).toHaveAttribute('aria-expanded', 'true', { timeout: 1_000 });
-  }).toPass({ timeout: 10_000 });
+    await expect(async () => {
+      await trigger.hover();
+      await expect(trigger).toHaveAttribute('aria-expanded', 'true', { timeout: 1_000 });
+    }).toPass({ timeout: 10_000 });
 
-  const subCategoryLink = panel.getByRole('link', { name: subCategory, exact: true });
-  await subCategoryLink.click();
-  await expect(this.page).toHaveTitle(`${subCategory} | Saleor Store`);
-}
-
+    const subCategoryLink = panel.getByRole('link', { name: subCategory, exact: true });
+    await subCategoryLink.click();
+    await expect(this.page).toHaveTitle(`${subCategory} | Saleor Store`);
+  }
 }

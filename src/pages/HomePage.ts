@@ -29,6 +29,4 @@ export class HomePage extends BasePage {
   async openCart(): Promise<void> {
     await this.cartLink.click();
   }
-
-  
 }
