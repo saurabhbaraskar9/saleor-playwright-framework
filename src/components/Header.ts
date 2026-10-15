@@ -10,13 +10,12 @@ export class Header {
     this.cartLink = page.getByTestId('CartNavItem');
     // FIX ToDo 1: XPath + hardcoded '/en/default' (breaks when locale/channel change).
     //        Inspect the icon: does the <a> have an aria-label? Use role + name instead.
-    this.accountLink = page.locator("//a[@href='/en/default/login']");
+    this.accountLink = page.getByRole('link', { name: 'Log in' });
   }
 
   async search(term: string): Promise<void> {
     await this.searchInput.fill(term);
-    // FIX 2: something from your HomePage.searchFor() went missing in the move.
-    //        Your search test will tell you what.
+    await this.searchInput.press('Enter');
   }
 
   async openCart(): Promise<void> {

@@ -17,9 +17,8 @@ export default defineConfig({
   testDir: './tests',
   fullyParallel: true,
   forbidOnly: isCI,
-  retries: isCI ? 1 : 1,
+  retries: isCI ? 2 : 0,
   workers: isCI ? 2 : undefined,
-
   timeout: 30_000,
   expect: { timeout: 5_000 },
 
@@ -30,6 +29,7 @@ export default defineConfig({
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
+    actionTimeout: 10_000,
   },
 
   projects: [

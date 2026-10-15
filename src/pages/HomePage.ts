@@ -4,7 +4,6 @@ import { BasePage } from './BasePage';
 /** Saleor storefront home page (default channel, English locale). */
 export class HomePage extends BasePage {
   protected readonly path = '/en/default';
-
   readonly searchInput: Locator;
   readonly cartLink: Locator;
 
